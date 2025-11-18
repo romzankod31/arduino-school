@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройки - RoboTech</title>
+    <link rel="stylesheet" href="cssstyle.css">
+</head>
+<body>
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>🎯 RoboTech</h2>
+            <button class="close-menu" onclick="Navigation.toggleSidebar()">×</button>
+        </div>
+        <div class="sidebar-content">
+            <a href="index.html" class="menu-item">🏠 Главная</a>
+            <a href="learn.html" class="menu-item">📚 Изучение языка</a>
+            <a href="lessons.html" class="menu-item">💻 Практические уроки</a>
+            <a href="profile.html" class="menu-item">👤 Профиль</a>
+            <a href="settings.html" class="menu-item active">⚙️ Настройки</a>
+            <a href="#" class="menu-item" onclick="Auth.logout()">🚪 Выйти</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <button class="menu-toggle" onclick="Navigation.toggleSidebar()">☰</button>
+
+        <header class="main-header">
+            <h1>⚙️ Настройки</h1>
+            <a href="index.html" class="btn btn-back">← Назад</a>
+        </header>
+
+        <div class="settings-content">
+            <div class="settings-section">
+                <h3>🎨 Внешний вид</h3>
+                <div class="setting-item">
+                    <label>Цветовая тема:</label>
+                    <select id="themeSelect" onchange="ArduinoSchoolApp.changeTheme(this.value)">
+                        <option value="auto">Авто (системная)</option>
+                        <option value="light">Светлая</option>
+                        <option value="dark">Темная</option>
+                    </select>
+                </div>
+                
+                <div class="setting-item">
+                    <label>Цвет фона:</label>
+                    <div class="color-picker">
+                        <input type="color" id="bgColor" value="#667eea" onchange="ArduinoSchoolApp.changeBackgroundColor(this.value)">
+                        <span class="color-value" id="bgColorValue">#667eea</span>
+                    </div>
+                </div>
+                
+                <div class="setting-item">
+                    <label>Размер шрифта:</label>
+                    <select id="fontSize" onchange="ArduinoSchoolApp.changeFontSize(this.value)">
+                        <option value="small">Маленький</option>
+                        <option value="medium">Средний</option>
+                        <option value="large">Большой</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>📋 Информация о сайте</h3>
+                <div class="info-item">
+                    <strong>Версия:</strong> 2.0.0
+                </div>
+                <div class="info-item">
+                    <strong>Дата создания:</strong> 2024
+                </div>
+                <div class="info-item">
+                    <strong>Лицензия:</strong> MIT License
+                </div>
+                <div class="info-item">
+                    <strong>Разработчик:</strong> RoboTech Team
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="jsutils.js"></script>
+    <script src="jsdata-manager.js"></script>
+    <script src="jsauth.js"></script>
+    <script src="jsnavigation.js"></script>
+    <script src="jsui.js"></script>
+    <script src="jsapp.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            ArduinoSchoolApp.getInstance().initialize().then(() => {
+                ArduinoSchoolApp.loadSettings();
+            });
+        });
+    </script>
+</body>
+</html>

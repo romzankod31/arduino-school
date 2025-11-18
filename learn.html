@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Разделы по Arduino - RoboTech</title>
+    <link rel="stylesheet" href="cssstyle.css">
+</head>
+<body>
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>🎯 RoboTech</h2>
+            <button class="close-menu" onclick="Navigation.toggleSidebar()">×</button>
+        </div>
+        <div class="sidebar-content">
+            <a href="index.html" class="menu-item">🏠 Главная</a>
+            <a href="learn.html" class="menu-item active">📚 Разделы по Arduino</a>
+            <a href="lessons.html" class="menu-item">💻 Практические уроки</a>
+            <a href="profile.html" class="menu-item">👤 Профиль</a>
+            <a href="settings.html" class="menu-item">⚙️ Настройки</a>
+            <a href="#" class="menu-item" onclick="Auth.logout()">🚪 Выйти</a>
+        </div>
+        <div class="sidebar-footer">
+            <div class="version-info">v2.2.4</div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <button class="menu-toggle" onclick="Navigation.toggleSidebar()">☰</button>
+
+        <header class="main-header">
+            <h1>📚 Разделы по Arduino</h1>
+            <a href="index.html" class="btn btn-back">← На главную</a>
+        </header>
+
+        <div class="learning-layout">
+            <!-- Боковая панель с разделами -->
+            <aside class="sections-sidebar">
+                <h3>Разделы обучения</h3>
+                <div class="sections-list">
+                    <div class="section-item active" data-section="arduino-start">
+                        <div class="section-icon">🚀</div>
+                        <div class="section-info">
+                            <h4>Начало Arduino</h4>
+                            <span class="section-progress">0/4 модуля</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Основной контент раздела -->
+            <main class="section-content">
+                <div class="section-header">
+                    <h2>Начало Arduino</h2>
+                    <div class="section-stats">
+                        <span class="stat">📊 4 модуля</span>
+                        <span class="stat">⏱️ 60 минут</span>
+                    </div>
+                </div>
+
+                <div class="modules-list">
+                    <!-- МОДУЛЬ 1: Что такое Arduino? -->
+                    <div class="module-card" data-module="what-is-arduino">
+                        <div class="module-header" onclick="Learning.toggleModule('what-is-arduino')">
+                            <div class="module-icon">❓</div>
+                            <h3>Что такое Arduino?</h3>
+                            <div class="module-status">Доступно</div>
+                        </div>
+                        
+                        <div class="module-content hidden" id="what-is-arduino-content">
+                            <div class="learning-content">
+                                <!-- Шаг 1: Введение -->
+                                <div class="learning-step active" data-step="1">
+                                    <div class="theory">
+                                        <h2>Введение в Arduino</h2>
+                                        <p><strong>Arduino</strong> - это платформа для создания электронных устройств, которая состоит из двух основных частей:</p>
+                                        
+                                        <div class="info-box">
+                                            <h5>📋 Аппаратная часть:</h5>
+                                            <ul>
+                                                <li>Плата с микроконтроллером</li>
+                                                <li>Цифровые и аналоговые входы/выходы</li>
+                                                <li>USB-порт для программирования</li>
+                                                <li>Разъем для питания</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="info-box">
+                                            <h5>💻 Программная часть:</h5>
+                                            <ul>
+                                                <li>Среда разработки Arduino IDE</li>
+                                                <li>Упрощенный язык программирования на основе C++</li>
+                                                <li>Библиотеки для работы с компонентами</li>
+                                                <li>Простая загрузка программ в плату</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="module-actions">
+                                        <button class="btn btn-next" onclick="Learning.nextStep('what-is-arduino', 1)">Далее →</button>
+                                    </div>
+                                </div>
+
+                                <!-- Шаг 2: Компоненты -->
+                                <div class="learning-step hidden" data-step="2">
+                                    <div class="theory">
+                                        <h2>Компоненты Arduino Uno</h2>
+                                        
+                                        <div class="arduino-image">
+                                            <div class="board-preview">
+                                                <div class="board-header">Arduino Uno</div>
+                                                <div class="board-components">
+                                                    <div class="component">🔌 USB порт</div>
+                                                    <div class="component">⚡ Питание</div>
+                                                    <div class="component">💡 Светодиоды</div>
+                                                    <div class="component">🔘 Кнопка сброса</div>
+                                                    <div class="component">📊 Цифровые пины</div>
+                                                    <div class="component">📈 Аналоговые пины</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="theory-tips">
+                                            <h3>💡 Основные компоненты:</h3>
+                                            <ul>
+                                                <li><strong>Микроконтроллер:</strong> "Мозг" платы</li>
+                                                <li><strong>Цифровые пины:</strong> Для включения/выключения устройств</li>
+                                                <li><strong>Аналоговые пины:</strong> Для чтения значений датчиков</li>
+                                                <li><strong>USB порт:</strong> Для программирования и питания</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="module-actions">
+                                        <button class="btn btn-secondary" onclick="Learning.prevStep('what-is-arduino', 2)">← Назад</button>
+                                        <button class="btn btn-next" onclick="Learning.nextStep('what-is-arduino', 2)">Далее →</button>
+                                    </div>
+                                </div>
+
+                                <!-- Шаг 3: Преимущества -->
+                                <div class="learning-step hidden" data-step="3">
+                                    <div class="theory">
+                                        <h2>Преимущества Arduino</h2>
+                                        
+                                        <div class="advantages-grid">
+                                            <div class="advantage">
+                                                <span class="advantage-icon">🎯</span>
+                                                <strong>Простота</strong>
+                                                <p>Легко начать даже без опыта в электронике</p>
+                                            </div>
+                                            <div class="advantage">
+                                                <span class="advantage-icon">💰</span>
+                                                <strong>Доступность</strong>
+                                                <p>Низкая стоимость компонентов и плат</p>
+                                            </div>
+                                            <div class="advantage">
+                                                <span class="advantage-icon">🌐</span>
+                                                <strong>Сообщество</strong>
+                                                <p>Большая база знаний и готовых проектов</p>
+                                            </div>
+                                            <div class="advantage">
+                                                <span class="advantage-icon">🔧</span>
+                                                <strong>Гибкость</strong>
+                                                <p>Можно создавать любые проекты - от простых до сложных</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="module-actions">
+                                        <button class="btn btn-secondary" onclick="Learning.prevStep('what-is-arduino', 3)">← Назад</button>
+                                        <button class="btn btn-next" onclick="Learning.nextStep('what-is-arduino', 3)">Далее →</button>
+                                    </div>
+                                </div>
+
+                                <!-- Шаг 4: Практическое задание -->
+                                <div class="learning-step hidden" data-step="4">
+                                    <div class="theory">
+                                        <h2>🧪 Практическое задание</h2>
+                                        
+                                        <div class="practice-section">
+                                            <p><strong>Задание:</strong> Подумай и напиши в тетради 3 идеи проектов, которые можно реализовать с помощью Arduino:</p>
+                                            <ul>
+                                                <li>Один простой проект (например, мигающий светодиод)</li>
+                                                <li>Один средний проект (например, метеостанция)</li>
+                                                <li>Один сложный проект (например, робот)</li>
+                                            </ul>
+                                            
+                                            <div class="task">
+                                                <h3>📝 Проверь себя:</h3>
+                                                <p>Ответь на вопросы:</p>
+                                                <ul>
+                                                    <li>Что такое Arduino?</li>
+                                                    <li>Какие основные компоненты есть на плате?</li>
+                                                    <li>В чем преимущества Arduino перед другими платформами?</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="module-actions">
+                                        <button class="btn btn-secondary" onclick="Learning.prevStep('what-is-arduino', 4)">← Назад</button>
+                                        <button class="btn btn-success" onclick="Learning.completeModule('what-is-arduino')">✅ Завершить модуль</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- МОДУЛЬ 2: Установка Arduino IDE -->
+                    <div class="module-card" data-module="install-arduino-ide">
+                        <div class="module-header" onclick="Learning.toggleModule('install-arduino-ide')">
+                            <div class="module-icon">💻</div>
+                            <h3>Установка Arduino IDE</h3>
+                            <div class="module-status">Доступно</div>
+                        </div>
+                        
+                        <div class="module-content hidden" id="install-arduino-ide-content">
+                            <div class="learning-content">
+                                <!-- Шаг 1: Введение -->
+                                <div class="learning-step active" data-step="1">
+                                    <div class="theory">
+                                        <h2>🚀 Установка Arduino IDE</h2>
+                                        <p><strong>Arduino IDE</strong> - это программа, где мы будем писать код для наших проектов! Это как специальный текстовый редактор для Arduino.</p>
+                                        
+                                        <div class="info-box" style="background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-left: 4px solid #2196f3;">
+                                            <h5>🎯 Что мы сделаем:</h5>
+                                            <ul>
+                                                <li>📥 Скачаем Arduino IDE с официального сайта</li>
+                                                <li>⚙️ Установим программу на компьютер</li>
+                                                <li>✅ Проверим, что всё работает правильно</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="module-actions">
+                                        <button class="btn btn-next" onclick="Learning.nextStep('install-arduino-ide', 1)">Начать установку! 🚀</button>
+                                    </div>
+                                </div>
+
+                                <!-- Шаг 2: Выбор ОС -->
+                                <div class="learning-step hidden" data-step="2">
+                                    <div class="theory">
+                                        <h2>🖥️ Выбери свою операционную систему</h2>
+                                        
+                                        <div class="os-selection">
+                                            <div class="os-option" onclick="Learning.selectOS('windows')">
+                                                <div class="os-icon">🪟</div>
+                                                <div class="os-info">
+                                                    <h4>Windows</h4>
+                                                    <p>Для компьютеров с Windows</p>
+                                                </div>
+                                                <div class="os-check">✓</div>
+                                            </div>
+                                            
+                                            <div class="os-option" onclick="Learning.selectOS('mac')">
+                                                <div class="os-icon">🍎</div>
+                                                <div class="os-info">
+                                                    <h4>Mac OS</h4>
+                                                    <p>Для компьютеров Apple</p>
+                                                </div>
+                                                <div class="os-check">✓</div>
+                                            </div>
+                                            
+                                            <div class="os-option" onclick="Learning.selectOS('linux')">
+                                                <div class="os-icon">🐧</div>
+                                                <div class="os-info">
+                                                    <h4>Linux</h4>
+                                                    <p>Для компьютеров с Linux</p>
+                                                </div>
+                                                <div class="os-check">✓</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="module-actions">
+                                        <button class="btn btn-secondary" onclick="Learning.prevStep('install-arduino-ide', 2)">← Назад</button>
+                                        <button class="btn btn-next" id="nextStep2" disabled onclick="Learning.nextStep('install-arduino-ide', 2)">Продолжить ✅</button>
+                                    </div>
+                                </div>
+
+                                <!-- Шаг 3: Скачивание -->
+                                <div class="learning-step hidden" data-step="3">
+                                    <div class="theory">
+                                        <h2>📥 Скачиваем Arduino IDE</h2>
+                                        
+                                        <div class="download-guide">
+                                            <div class="step-number">1</div>
+                                            <div class="step-content">
+                                                <h4>Перейди на официальный сайт</h4>
+                                                <p>Нажми на кнопку ниже чтобы открыть страницу загрузки:</p>
+                                                <a href="https://github.com/arduino/arduino-ide/releases" target="_blank" class="btn btn-primary download-btn">🌐 Открыть страницу загрузки</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="download-guide">
+                                            <div class="step-number">2</div>
+                                            <div class="step-content">
+                                                <h4>Найди свою версию</h4>
+                                                <p>На странице найди файл для своей операционной системы:</p>
+                                                <div class="os-files">
+                                                    <div class="os-file"><span class="file-icon">📦</span><span class="file-name">Windows: <code>.exe</code> файл</span></div>
+                                                    <div class="os-file"><span class="file-icon">📦</span><span class="file-name">Mac: <code>.dmg</code> файл</span></div>
+                                                    <div class="os-file"><span class="file-icon">📦</span><span class="file-name">Linux: <code>.AppImage</code> файл</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="module-actions">
+                                        <button class="btn btn-secondary" onclick="Learning.prevStep('install-arduino-ide', 3)">← Назад</button>
+                                        <button class="btn btn-next" onclick="Learning.nextStep('install-arduino-ide', 3)">Я скачал! 🎉</button>
+                                    </div>
+                                </div>
+
+                                <!-- Шаг 4: Установка -->
+                                <div class="learning-step hidden" data-step="4">
+                                    <div class="theory">
+                                        <h2>⚙️ Устанавливаем Arduino IDE</h2>
+                                        
+                                        <div class="installation-steps">
+                                            <div class="install-step">
+                                                <div class="step-visual">
+                                                    <div class="computer-screen">
+                                                        <div class="screen-content">
+                                                            <div class="folder">📁 Downloads</div>
+                                                            <div class="file">📦 arduino-ide.exe</div>
+                                                            <div class="cursor">👉</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="step-instruction">
+                                                    <h4>1. Найди скачанный файл</h4>
+                                                    <p>Открой папку "Загрузки" и найди файл Arduino IDE</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="install-step">
+                                                <div class="step-visual">
+                                                    <div class="install-window">
+                                                        <div class="window-header">Arduino IDE Setup</div>
+                                                        <div class="window-content">
+                                                            <div class="install-option">✅ I accept the agreement</div>
+                                                            <div class="install-option">📁 Install to: C:\Program Files\Arduino</div>
+                                                            <button class="install-button">Next ></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="step-instruction">
+                                                    <h4>2. Запусти установку</h4>
+                                                    <p>Дважды нажми на файл и следуй инструкциям установщика</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="module-actions">
+                                        <button class="btn btn-secondary" onclick="Learning.prevStep('install-arduino-ide', 4)">← Назад</button>
+                                        <button class="btn btn-next" onclick="Learning.nextStep('install-arduino-ide', 4)">Установлено! ✅</button>
+                                    </div>
+                                </div>
+
+                                <!-- Шаг 5: Проверка -->
+                                <div class="learning-step hidden" data-step="5">
+                                    <div class="theory">
+                                        <h2>🎉 Проверяем установку!</h2>
+                                        
+                                        <div class="success-check">
+                                            <div class="check-animation">
+                                                <div class="check-icon">✅</div>
+                                                <div class="check-message">Arduino IDE успешно установлена!</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="module-actions">
+                                        <button class="btn btn-secondary" onclick="Learning.prevStep('install-arduino-ide', 5)">← Назад</button>
+                                        <button class="btn btn-success" onclick="Learning.completeModule('install-arduino-ide')">🎊 Завершить установку!</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Остальные модули (3 и 4) остаются без изменений -->
+                    <!-- МОДУЛЬ 3: Установка драйверов -->
+                    <div class="module-card" data-module="install-arduino-driver">
+                        <div class="module-header" onclick="Learning.toggleModule('install-arduino-driver')">
+                            <div class="module-icon">🔌</div>
+                            <h3>Установка драйверов Arduino</h3>
+                            <div class="module-status">Только для Windows</div>
+                        </div>
+                        
+                        <div class="module-content hidden" id="install-arduino-driver-content">
+                            <!-- Содержимое модуля 3 -->
+                        </div>
+                    </div>
+
+                    <!-- МОДУЛЬ 4: Работа с Arduino IDE -->
+                    <div class="module-card" data-module="work-with-arduino-ide">
+                        <div class="module-header" onclick="Learning.toggleModule('work-with-arduino-ide')">
+                            <div class="module-icon">⚡</div>
+                            <h3>Работа с Arduino IDE</h3>
+                            <div class="module-status">Готов к программированию!</div>
+                        </div>
+                        
+                        <div class="module-content hidden" id="work-with-arduino-ide-content">
+                            <!-- Содержимое модуля 4 -->
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="jsutils.js"></script>
+    <script src="jsdata-manager.js"></script>
+    <script src="jsauth.js"></script>
+    <script src="jsnavigation.js"></script>
+    <script src="jsui.js"></script>
+    <script src="jsapp.js"></script>
+    <script src="jslearning.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            ArduinoSchoolApp.getInstance().initialize().then(() => {
+                console.log('Learning page initialized');
+                Learning.init();
+            });
+        });
+    </script>
+</body>
+</html>

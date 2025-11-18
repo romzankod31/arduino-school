@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboTech 2.0 - Вход</title>
+    <link rel="stylesheet" href="cssstyle.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <h1>🎯 RoboTech</h1>
+                <p>Войди в свою учетную запись</p>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">Имя пользователя:</label>
+                    <input type="text" id="username" name="username" required 
+                           placeholder="Введи свое имя" minlength="3" maxlength="20">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Пароль:</label>
+                    <input type="password" id="password" name="password" required 
+                           placeholder="Введи пароль" minlength="4">
+                </div>
+
+                <button type="submit" class="btn-login">🚀 Войти</button>
+            </form>
+
+            <div class="demo-section">
+                <button class="demo-toggle" onclick="Auth.toggleDemoAccounts()">
+                    👥 Демо аккаунты
+                </button>
+                
+                <div class="demo-accounts hidden" id="demoAccounts">
+                    <h3>Выбери демо-аккаунт:</h3>
+                    <div class="demo-buttons">
+                        <button class="demo-btn" onclick="Auth.loginToDemoAccount('arduino_123')">
+                            <span class="demo-icon">🆕</span>
+                            <span class="demo-info">
+                                <strong>Чистый аккаунт</strong>
+                                <small>arduino_123 / arduino_123</small>
+                            </span>
+                        </button>
+                        <button class="demo-btn" onclick="Auth.loginToDemoAccount('novice')">
+                            <span class="demo-icon">🟢</span>
+                            <span class="demo-info">
+                                <strong>Новичок</strong>
+                                <small>novice / demo123</small>
+                            </span>
+                        </button>
+                        <button class="demo-btn" onclick="Auth.loginToDemoAccount('student')">
+                            <span class="demo-icon">🟡</span>
+                            <span class="demo-info">
+                                <strong>Опытный</strong>
+                                <small>student / demo123</small>
+                            </span>
+                        </button>
+                        <button class="demo-btn" onclick="Auth.loginToDemoAccount('pro')">
+                            <span class="demo-icon">🔴</span>
+                            <span class="demo-info">
+                                <strong>Продвинутый</strong>
+                                <small>pro / demo123</small>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="login-footer">
+                <p>Нет аккаунта? <a href="register.html" class="link">Зарегистрируйся</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="jsutils.js"></script>
+    <script src="jsdata-manager.js"></script>
+    <script src="jsauth.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Простая инициализация данных
+            DataManager.initialize();
+            Auth.initLoginForm();
+            
+            // Проверяем авторизацию
+            const currentUser = localStorage.getItem('currentUser');
+            if (currentUser) {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>

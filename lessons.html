@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практические уроки - RoboTech</title>
+    <link rel="stylesheet" href="cssstyle.css">
+</head>
+<body>
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>🎯 RoboTech</h2>
+            <button class="close-menu" onclick="Navigation.toggleSidebar()">×</button>
+        </div>
+        <div class="sidebar-content">
+            <a href="index.html" class="menu-item">🏠 Главная</a>
+            <a href="learn.html" class="menu-item">📚 Изучение языка</a>
+            <a href="lessons.html" class="menu-item active">💻 Практические уроки</a>
+            <a href="profile.html" class="menu-item">👤 Профиль</a>
+            <a href="settings.html" class="menu-item">⚙️ Настройки</a>
+            <a href="#" class="menu-item" onclick="Auth.logout()">🚪 Выйти</a>
+        </div>
+        <div class="sidebar-footer">
+            <div class="version-info">v2.0.0</div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <button class="menu-toggle" onclick="Navigation.toggleSidebar()">☰</button>
+
+        <header class="main-header">
+            <h1>💻 Практические уроки</h1>
+            <a href="index.html" class="btn btn-back">← На главную</a>
+        </header>
+
+        <div class="lessons-grid-compact">
+            <div class="lesson-square" data-lesson="1" onclick="UserInterface.openLesson(1)">
+                <div class="lesson-icon">🚀</div>
+                <h3>Урок 1</h3>
+                <p>Первая программа</p>
+                <div class="lesson-status" id="lesson1Status">🔒</div>
+            </div>
+
+            <div class="lesson-square" data-lesson="2" onclick="UserInterface.openLesson(2)">
+                <div class="lesson-icon">🔘</div>
+                <h3>Урок 2</h3>
+                <p>Светодиод и кнопка</p>
+                <div class="lesson-status" id="lesson2Status">🔒</div>
+            </div>
+
+            <div class="lesson-square" data-lesson="3" onclick="UserInterface.openLesson(3)">
+                <div class="lesson-icon">💡</div>
+                <h3>Урок 3</h3>
+                <p>ШИМ и яркость</p>
+                <div class="lesson-status" id="lesson3Status">🔒</div>
+            </div>
+
+            <div class="lesson-square" data-lesson="4" onclick="UserInterface.openLesson(4)">
+                <div class="lesson-icon">⚙️</div>
+                <h3>Урок 4</h3>
+                <p>Сервопривод</p>
+                <div class="lesson-status" id="lesson4Status">🔒</div>
+            </div>
+
+            <div class="lesson-square" data-lesson="5" onclick="UserInterface.openLesson(5)">
+                <div class="lesson-icon">📏</div>
+                <h3>Урок 5</h3>
+                <p>Ультразвуковой датчик</p>
+                <div class="lesson-status" id="lesson5Status">🔒</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="jsutils.js"></script>
+    <script src="jsdata-manager.js"></script>
+    <script src="jsauth.js"></script>
+    <script src="jsnavigation.js"></script>
+    <script src="jsui.js"></script>
+    <script src="jsapp.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            ArduinoSchoolApp.getInstance().initialize().then(() => {
+                UserInterface.updateLessonStatus();
+            });
+        });
+    </script>
+</body>
+</html>

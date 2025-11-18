@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 1: Первая программа - RoboTech</title>
+    <link rel="stylesheet" href="cssstyle.css">
+</head>
+<body>
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>🎯 RoboTech</h2>
+            <button class="close-menu" onclick="Navigation.toggleSidebar()">×</button>
+        </div>
+        <div class="sidebar-content">
+            <a href="index.html" class="menu-item">🏠 Главная</a>
+            <a href="learn.html" class="menu-item">📚 Изучение языка</a>
+            <a href="lessons.html" class="menu-item">💻 Практические уроки</a>
+            <a href="profile.html" class="menu-item">👤 Профиль</a>
+            <a href="settings.html" class="menu-item">⚙️ Настройки</a>
+            <a href="#" class="menu-item" onclick="Auth.logout()">🚪 Выйти</a>
+        </div>
+        <div class="sidebar-footer">
+            <div class="version-info">v2.0.0</div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <button class="menu-toggle" onclick="Navigation.toggleSidebar()">☰</button>
+
+        <header class="main-header">
+            <h1>Урок 1: Первая программа</h1>
+            <a href="lessons.html" class="btn btn-back">← К урокам</a>
+        </header>
+
+        <div class="lesson-content">
+            <div class="theory">
+                <h2>Мигающий светодиод</h2>
+                <p>На плате Arduino есть встроенный светодиод на пине 13. Давай заставим его мигать!</p>
+                
+                <div class="task">
+                    <h3>Задание:</h3>
+                    <p>Напиши программу, которая включает светодиод на 1 секунду и выключает на 1 секунду.</p>
+                </div>
+            </div>
+
+            <div class="code-section">
+                <h3>Твой код:</h3>
+                <textarea id="codeEditor" rows="12">
+int ledPin = 13;
+
+void setup() {
+  // Настрой пин как выход
+}
+
+void loop() {
+  // Включи светодиод
+  // Подожди 1000 миллисекунд
+  // Выключи светодиод
+  // Подожди 1000 миллисекунд
+}</textarea>
+                <button class="btn btn-check" onclick="checkCode()">Проверить код</button>
+            </div>
+
+            <div id="result" class="result hidden">
+                <div id="message"></div>
+                <button class="btn btn-next-lesson" onclick="completeLesson()">Завершить урок</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="jsutils.js"></script>
+    <script src="jsdata-manager.js"></script>
+    <script src="jsauth.js"></script>
+    <script src="jsnavigation.js"></script>
+    <script src="jsui.js"></script>
+    <script src="jsapp.js"></script>
+    <script src="jslessons.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = localStorage.getItem('currentUser');
+            if (!currentUser) {
+                alert('Пожалуйста, войдите в систему');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            ArduinoSchoolApp.getInstance().initialize().then(() => {
+                initLesson(1);
+            });
+        });
+
+        function checkCode() {
+            const code = document.getElementById('codeEditor').value;
+            const result = document.getElementById('result');
+            const message = document.getElementById('message');
+            
+            if (code.includes('pinMode') && 
+                code.includes('digitalWrite') && 
+                code.includes('delay')) {
+                
+                message.innerHTML = '✅ Отлично! Код правильный! Светодиод будет мигать!';
+                message.className = 'success';
+                result.classList.remove('hidden');
+                
+            } else {
+                message.innerHTML = '❌ Проверь, что ты использовал pinMode, digitalWrite и delay';
+                message.className = 'error';
+                result.classList.remove('hidden');
+            }
+        }
+
+        function completeLesson() {
+            ArduinoSchoolApp.completeLesson(1);
+            setTimeout(() => {
+                window.location.href = 'lessons.html';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

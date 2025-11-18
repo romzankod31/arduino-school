@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 2: Светодиод и кнопка</title>
+    <link rel="stylesheet" href="cssstyle.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="main-nav">
+            <button class="menu-btn" onclick="Navigation.toggleMenu()">☰ Меню</button>
+            <div class="menu-dropdown" id="menuDropdown">
+                <a href="index.html" class="menu-item">🏠 Главная</a>
+                <a href="learn.html" class="menu-item">📚 Обучение</a>
+                <a href="profile.html" class="menu-item">👤 Профиль</a>
+                <a href="settings.html" class="menu-item">⚙️ Настройки</a>
+                <a href="#" class="menu-item" onclick="Auth.logout()">🚪 Выйти</a>
+            </div>
+        </nav>
+
+        <header class="main-header">
+            <h1>Урок 2: Светодиод и кнопка</h1>
+            <a href="index.html" class="btn btn-back">← На главную</a>
+        </header>
+
+        <div class="lesson-content">
+            <div class="theory">
+                <h2>Управление светодиодом с помощью кнопки</h2>
+                <p>Научимся читать состояние кнопки и управлять светодиодом.</p>
+                
+                <div class="task">
+                    <h3>Задание:</h3>
+                    <p>Сделай так, чтобы светодиод включался только когда нажата кнопка.</p>
+                </div>
+            </div>
+
+            <div class="code-section">
+                <h3>Твой код:</h3>
+                <textarea id="codeEditor" rows="15">
+int buttonPin = 2;
+int ledPin = 13;
+
+void setup() {
+  // Настрой пины
+}
+
+void loop() {
+  // Прочитай состояние кнопки
+  // Если кнопка нажата - включи светодиод
+  // Иначе - выключи светодиод
+}</textarea>
+                <button class="btn btn-check" onclick="checkCode()">Проверить код</button>
+            </div>
+
+            <div id="result" class="result hidden">
+                <div id="message"></div>
+                <button class="btn btn-next-lesson" onclick="completeLesson()">Завершить урок</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="jsutils.js"></script>
+    <script src="jsdata-manager.js"></script>
+    <script src="jsauth.js"></script>
+    <script src="jsnavigation.js"></script>
+    <script src="jsapp.js"></script>
+    <script src="jslessons.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initLesson(2);
+        });
+
+        function checkCode() {
+            const code = document.getElementById('codeEditor').value;
+            const result = document.getElementById('result');
+            const message = document.getElementById('message');
+            
+            if (code.includes('digitalRead') && 
+                code.includes('if') && 
+                code.includes('digitalWrite')) {
+                
+                message.innerHTML = '✅ Отлично! Кнопка теперь управляет светодиодом!';
+                message.className = 'success';
+                result.classList.remove('hidden');
+                
+            } else {
+                message.innerHTML = '❌ Используй digitalRead для чтения кнопки и if для проверки состояния';
+                message.className = 'error';
+                result.classList.remove('hidden');
+            }
+        }
+
+        function completeLesson() {
+            ArduinoSchoolApp.completeLesson(2);
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

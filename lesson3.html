@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 3: ШИМ и яркость</title>
+    <link rel="stylesheet" href="cssstyle.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="main-nav">
+            <button class="menu-btn" onclick="Navigation.toggleMenu()">☰ Меню</button>
+            <div class="menu-dropdown" id="menuDropdown">
+                <a href="index.html" class="menu-item">🏠 Главная</a>
+                <a href="learn.html" class="menu-item">📚 Обучение</a>
+                <a href="profile.html" class="menu-item">👤 Профиль</a>
+                <a href="settings.html" class="menu-item">⚙️ Настройки</a>
+                <a href="#" class="menu-item" onclick="Auth.logout()">🚪 Выйти</a>
+            </div>
+        </nav>
+
+        <header class="main-header">
+            <h1>Урок 3: ШИМ и яркость</h1>
+            <a href="index.html" class="btn btn-back">← На главную</a>
+        </header>
+
+        <div class="lesson-content">
+            <div class="theory">
+                <h2>Управление яркостью светодиода</h2>
+                <p>Используем ШИМ (PWM) для плавного изменения яркости светодиода.</p>
+                
+                <div class="task">
+                    <h3>Задание:</h3>
+                    <p>Сделай плавное включение и выключение светодиода.</p>
+                </div>
+            </div>
+
+            <div class="code-section">
+                <h3>Твой код:</h3>
+                <textarea id="codeEditor" rows="15">
+int ledPin = 9;
+
+void setup() {
+  // Настрой пин как выход
+}
+
+void loop() {
+  // Плавное увеличение яркости
+  // Плавное уменьшение яркости
+}</textarea>
+                <button class="btn btn-check" onclick="checkCode()">Проверить код</button>
+            </div>
+
+            <div id="result" class="result hidden">
+                <div id="message"></div>
+                <button class="btn btn-next-lesson" onclick="completeLesson()">Завершить урок</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="jsutils.js"></script>
+    <script src="jsdata-manager.js"></script>
+    <script src="jsauth.js"></script>
+    <script src="jsnavigation.js"></script>
+    <script src="jsapp.js"></script>
+    <script src="jslessons.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initLesson(3);
+        });
+
+        function checkCode() {
+            const code = document.getElementById('codeEditor').value;
+            const result = document.getElementById('result');
+            const message = document.getElementById('message');
+            
+            if (code.includes('analogWrite') && code.includes('for')) {
+                message.innerHTML = '✅ Отлично! Светодиод теперь плавно меняет яркость!';
+                message.className = 'success';
+                result.classList.remove('hidden');
+            } else {
+                message.innerHTML = '❌ Используй analogWrite для ШИМ и for для плавного изменения';
+                message.className = 'error';
+                result.classList.remove('hidden');
+            }
+        }
+
+        function completeLesson() {
+            ArduinoSchoolApp.completeLesson(3);
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
